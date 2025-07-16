@@ -6,15 +6,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class SecretService {
 
-    private String secretKey;
+  private String secretKey;
 
-    public SecretService(@Value("${secret.key}") String secretKey) {
-        this.secretKey = secretKey;
-    }
+  public SecretService(@Value("${secret.key}") String secretKey) {
+    this.secretKey = secretKey;
+  }
 
-    public String getSecretKey() {
-        return secretKey;
-    }
-
-
+  public String getSecretKey() {
+    return secretKey;
+  }
 }

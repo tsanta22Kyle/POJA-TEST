@@ -93,12 +93,12 @@ jobs:
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
-      - name: Build project
+      - name: Build project with env for SAM/Gradle
         run: |
-          sam build --parameter-overrides "SECRET_KEY=${SECRET_KEY}"
-        env:
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-
+          echo "Running sam build with env override"
+          export SECRET_KEY=${{ secrets.SECRET_KEY }}
+          sam build --debug
+      
 
       - name: Prepare Poja deployment
         run: |

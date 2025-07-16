@@ -10,8 +10,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 
 
-@SpringBootTest
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+
 public class SimpleVarEnvTest extends FacadeIT {
 
     @Autowired

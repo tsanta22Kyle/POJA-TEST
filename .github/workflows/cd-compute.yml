@@ -94,7 +94,11 @@ jobs:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
       - name: Build project
-        run: sam build
+        run: |
+          sam build --parameter-overrides "SECRET_KEY=${SECRET_KEY}"
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+
 
       - name: Prepare Poja deployment
         run: |

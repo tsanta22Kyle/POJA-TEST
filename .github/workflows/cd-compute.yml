@@ -75,6 +75,10 @@ jobs:
           java-version: '21'
           distribution: 'corretto'
 
+      - name: inject secret variables
+        run: echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> $GITHUB_ENV
+
+
       - name: Prepare build
         run: |
           chmod +x ./gradlew

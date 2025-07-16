@@ -28,6 +28,7 @@ jobs:
 
     env:
       AWS_REGION: eu-west-3
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
     steps:
       - uses: actions/checkout@v4.1.6
@@ -74,10 +75,6 @@ jobs:
         with:
           java-version: '21'
           distribution: 'corretto'
-
-      - name: inject secret variables
-        run: echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> $GITHUB_ENV
-
 
       - name: Prepare build
         run: |

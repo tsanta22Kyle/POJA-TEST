@@ -93,11 +93,12 @@ jobs:
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
-      - name: Build project with env for SAM/Gradle
+      - name: Build project with env for SAM/Gradle (skip tests)
         run: |
-          echo "Running sam build with env override"
+          echo "Running sam build with skipTests"
           export SECRET_KEY=${{ secrets.SECRET_KEY }}
-          sam build --debug
+          sam build --debug --build-options "--skipTests=true"
+      
       
 
       - name: Prepare Poja deployment

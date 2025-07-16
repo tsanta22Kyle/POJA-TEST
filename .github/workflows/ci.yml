@@ -17,9 +17,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    environment: ${{ github.ref_name == 'main' && 'prod' || 'preprod' }}
 
     env:
       AWS_REGION: eu-west-3
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
     steps:
       - uses: actions/checkout@v4.1.6

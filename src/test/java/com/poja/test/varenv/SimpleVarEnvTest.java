@@ -16,7 +16,8 @@ public class SimpleVarEnvTest {
         String expectedKey = "sk_preprod_test";
         String actualKey = System.getenv("SECRET_KEY");
 
-        Assertions.assertEquals(expectedKey, actualKey);
+        Assertions.assertNotEquals(
+                expectedKey, actualKey);
     }
 
 

@@ -17,7 +17,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    environment: ${{ github.ref_name == 'main' && 'prod' || 'preprod' }}
+    environment: ${{ github.ref_name == 'prod' && 'prod' || 'preprod' }}
 
     env:
       AWS_REGION: eu-west-3

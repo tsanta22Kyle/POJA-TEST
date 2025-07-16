@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 public class SecretService {
 
     private String secretKey;
+
     public SecretService(@Value("${secret.key}") String secretKey) {
         this.secretKey = secretKey;
     }
+
     public String getSecretKey() {
         return secretKey;
     }

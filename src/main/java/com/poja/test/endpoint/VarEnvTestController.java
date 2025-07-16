@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class VarEnvTestController {
-
     @Autowired
     private SecretService secretService;
 
@@ -15,5 +14,4 @@ public class VarEnvTestController {
     public String test() {
         return secretService.getSecretKey();
     }
-
 }

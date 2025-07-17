@@ -27,6 +27,7 @@ jobs:
     env:
       AWS_REGION: eu-west-3
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      JAVA_TOOL_OPTIONS: -DSECRET_KEY=${{ secrets.SECRET_KEY }}
 
     steps:
       - uses: actions/checkout@v4.1.6

@@ -17,14 +17,18 @@ jobs:
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    environment: ${{   github.event_name == 'pull_request' && github.base_ref == 'prod' && 'prod' ||
+    environment: ${{ github.event_name == 'pull_request' && github.base_ref == 'prod' && 'prod' ||
                 github.event_name == 'pull_request' && github.base_ref == 'preprod' && 'preprod' ||
                 github.ref == 'refs/heads/prod' && 'prod' ||
                 github.ref == 'refs/heads/preprod' && 'preprod' ||
-                'unknown'}}
+                github.ref == 'refs/heads/main' && 'main' ||
+                github.ref == 'refs/heads/dev' && 'dev' ||
+                'unknown'
+                  }}
 
 
-    env:
+
+  env:
       AWS_REGION: eu-west-3
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       JAVA_TOOL_OPTIONS: -DSECRET_KEY=${{ secrets.SECRET_KEY }}

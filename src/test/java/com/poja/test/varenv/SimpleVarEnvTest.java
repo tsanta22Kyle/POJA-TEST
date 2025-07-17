@@ -17,6 +17,6 @@ public class SimpleVarEnvTest extends FacadeIT {
     String expectedKey = "sk_preprod_test";
     String actualKey = subject.getSecretKey();
     Assertions.assertEquals(
-        expectedKey, actualKey, "💥 expected=" + expectedKey + " / actual=" + actualKey);
+        expectedKey, actualKey);
   }
 }

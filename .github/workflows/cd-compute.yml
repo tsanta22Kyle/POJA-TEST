@@ -95,7 +95,7 @@ jobs:
 
       - name: Build project
         run: |
-          sam build --parameter-overrides "SECRET_KEY=${SECRET_KEY}"
+          sam build --parameter-overrides "ParameterKey=SECRET_KEY,ParameterValue=${SECRET_KEY}"
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
       

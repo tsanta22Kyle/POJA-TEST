@@ -23,7 +23,11 @@ jobs:
   initiate-deployment:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    environment: ${{ github.ref_name == 'preprod' && 'preprod' || 'prod' }}
+    environment: ${{github.event_name == 'pull_request' && github.base_ref == 'prod' && 'prod' ||
+      github.event_name == 'pull_request' && github.base_ref == 'preprod' && 'preprod' ||
+      github.ref_name == 'prod' && 'prod' ||
+      github.ref_name == 'preprod' && 'preprod' ||
+      ''}}
 
     permissions:
       contents: write

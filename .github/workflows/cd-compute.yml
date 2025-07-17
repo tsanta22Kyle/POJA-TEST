@@ -93,12 +93,11 @@ jobs:
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
-      - name: Build project with env for SAM/Gradle (skip tests)
+      - name: Build project
         run: |
-          echo "Running sam build with SKIP_TESTS=true"
-          export SECRET_KEY=${{ secrets.SECRET_KEY }}
-          export SKIP_TESTS=true
-          sam build --debug
+          sam build --parameter-overrides "SECRET_KEY=${SECRET_KEY}"
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
       
       
       

@@ -44,11 +44,6 @@ test {
     finalizedBy jacocoTestCoverageVerification
 }
 
-def skipTests = project.hasProperty('skipTests') && project.skipTests.toBoolean()
-
-tasks.withType(Test) {
-    enabled = !skipTests
-}
 
 
 jacocoTestCoverageVerification {

@@ -23,6 +23,8 @@ jobs:
   initiate-deployment:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    environment: ${{ github.ref_name == 'preprod' && 'preprod' || 'prod' }}
+
     permissions:
       contents: write
 

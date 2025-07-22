@@ -95,22 +95,6 @@ jobs:
           echo "to_upload_filename=$(echo $response | jq -r '.filename')" >> $GITHUB_ENV
           curl --fail -X GET -o template.yml "$(echo $response | jq -r '.build_template_file_uri')"
 
-      - name: Inject secret variables
-        run: echo "SECRET_KEY=${{ github.event_name == 'pull_request' && github.base_ref == 'prod' && secrets.SECRET_KEY_PROD ||
-                                  github.event_name == 'pull_request' && github.base_ref == 'preprod' && secrets.SECRET_KEY_PREPROD ||
-                                  github.ref_name == 'prod' && secrets.SECRET_KEY_PROD ||
-                                  github.ref_name == 'preprod' && secrets.SECRET_KEY_PREPROD ||
-                                  secrets.SECRET_KEY_PREPROD }}" >> $GITHUB_ENV
-
-      - name: Debug secret variable (safe)
-        run: echo "SECRET_KEY is set"
-        env:
-          SECRET_KEY: ${{ github.event_name == 'pull_request' && github.base_ref == 'prod' && secrets.SECRET_KEY_PROD ||
-                          github.event_name == 'pull_request' && github.base_ref == 'preprod' && secrets.SECRET_KEY_PREPROD ||
-                          github.ref_name == 'prod' && secrets.SECRET_KEY_PROD ||
-                          github.ref_name == 'preprod' && secrets.SECRET_KEY_PREPROD ||
-                          secrets.SECRET_KEY_PREPROD }}
-
       - name: Build project
         run: |
           sam build --parameter-overrides "ParameterKey=SECRET_KEY,ParameterValue=${SECRET_KEY}"

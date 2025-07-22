@@ -12,7 +12,6 @@ public class SimpleVarEnvTest extends FacadeIT {
   @Autowired private SecretService subject;
 
   @Test
-  @Disabled
   public void test() {
     String expectedKey = "sk_preprod_test";
     String actualKey = subject.getSecretKey();
